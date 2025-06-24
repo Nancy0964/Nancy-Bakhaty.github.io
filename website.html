@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRPRS Portfolio</title>
+    <link rel="stylesheet" href="website-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;400;600&display=swap" rel="stylesheet">
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">DRPRS</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-text">
+            <h1>Future-Focused Engineer & Problem Solver</h1>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="projects" data-aos="fade-up">
+        <div class="project-card" onclick="location.href='ros.html'">ROS</div>
+        <div class="project-card" onclick="location.href='cad.html'">3D CAD</div>
+        <div class="project-card" onclick="location.href='pcb.html'">PCB</div>
+        <div class="project-card" onclick="location.href='fullp.html'">Full Projects</div>
+    </section>
+
+    <!-- About -->
+    <section id="about" data-aos="fade-up">
+        <h2>About Me</h2>
+        <p>I studied Mechatronics and Robotics at the University of Sheffield. Passionate engineer with strong design and programming skills. This site showcases personal projects demonstrating practical abilities in robotics, 3D modeling, PCB design, and full-stack development.</p>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" data-aos="fade-up">
+        <h2>Contact</h2>
+        <p><a href="mailto:nancyob133@outlook.com">nancyob133@outlook.com</a></p>
+        <p><a href="https://www.linkedin.com/in/nancy-bakhaty-7922001ba/" target="_blank">LinkedIn - Nancy Bakhaty</a></p>
+    </section>
+
+    <footer>
+        <p>© 2025 Nancy Bakhaty</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1200 });
+    </script>
+</body>
+</html>
