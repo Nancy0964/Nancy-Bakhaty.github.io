@@ -1,0 +1,52 @@
+/* Intro Section */
+.ros-intro {
+    text-align: center;
+    padding: 100px 20px;
+    background: #f4f4f4;
+}
+
+.ros-intro h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+/* Collapsible Sections */
+.collapsible {
+    background-color: #222;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    font-size: 1.2rem;
+    transition: background 0.3s ease;
+}
+
+.collapsible:hover,
+.collapsible.active {
+    background-color: #E74C3C;
+}
+
+.content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    background: #f9f9f9;
+    padding: 0 20px;
+}
+
+.media-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px 0;
+    justify-content: center;
+}
+
+.media-grid img,
+.media-grid video {
+    max-width: 300px;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}

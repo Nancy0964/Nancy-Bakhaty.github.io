@@ -1,51 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>ROS Projects | DRPRS</title>
-    <link rel="stylesheet" href="css/port_style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROS Projects | DRPRS</title>
+<link rel="stylesheet" href="website-style.css">
+<link rel="stylesheet" href="ros-style.css">
 </head>
-
 <body>
-    <header id="main-header">
-        <div class="nav-container">
-            <div class="logo">DRPRS</div>
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="index.html#about">About</a>
-                <a href="index.html#contact">Contact</a>
-            </nav>
-        </div>
-    </header>
 
-    <section class="hero-sub fade-in">
-        <h2>ROS Projects</h2>
-    </section>
+<!-- Navbar -->
+<header class="navbar">
+    <div class="logo">DRPRS</div>
+    <nav>
+    <button><a href="index.html">Home</a></button>
+    <button><a href="#about">About</a></button>
+    <button><a href="#contact">Contact</a></button>
+    </nav>
+</header>
 
-    <section class="project-list fade-in">
-        <article class="project">
-            <h3>Robot Arm Controller</h3>
-            <p>Built ROS2 robot arm with inverse kinematics, trajectory planning and Gazebo simulation.</p>
-        </article>
+<!-- Intro Section -->
+<section class="ros-intro">
+    <h1>Robotics with ROS</h1>
+    <p>Exploring practical robotics applications with the Robot Operating System, including navigation, simulation, and hardware integration.</p>
+</section>
 
-        <article class="project">
-            <h3>Autonomous Navigation Robot</h3>
-            <p>Implemented SLAM, LiDAR mapping, and obstacle avoidance.</p>
-        </article>
+<!-- Collapsible Project Section -->
+<section class="ros-projects">
+    <button class="collapsible">Simulation Projects</button>
+    <div class="content">
+    <div class="media-grid">
+        <img src="assets/images/ros-sim1.jpg" alt="Simulation 1">
+        <img src="assets/images/ros-sim2.jpg" alt="Simulation 2">
+        <video controls src="assets/videos/ros-sim.mp4"></video>
+    </div>
+    </div>
 
-        <article class="project">
-            <h3>Sensor Fusion System</h3>
-            <p>Fused IMU, GPS, and cameras for improved localization.</p>
-        </article>
-    </section>
+    <button class="collapsible">Navigation & Mapping</button>
+    <div class="content">
+    <div class="media-grid">
+        <img src="assets/images/nav1.jpg" alt="Navigation 1">
+        <video controls src="assets/videos/nav-demo.mp4"></video>
+    </div>
+    </div>
 
-    <footer>
-        <p>© 2025 Nancy Bakhaty</p>
-    </footer>
+    <button class="collapsible">Custom ROS Nodes</button>
+    <div class="content">
+    <div class="media-grid">
+        <img src="assets/images/node1.jpg" alt="Node 1">
+        <img src="assets/images/node2.jpg" alt="Node 2">
+    </div>
+    </div>
+</section>
 
-    <script src="css/scroll.js"></script>
+<!-- Footer -->
+<footer>
+    <p>© 2025 Nancy Bakhaty</p>
+</footer>
+
+<!-- Collapsible Script -->
+<script>
+    const collapsibles = document.querySelectorAll(".collapsible");
+    collapsibles.forEach(btn => {
+    btn.addEventListener("click", function() {
+        this.classList.toggle("active");
+        let content = this.nextElementSibling;
+        if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+        } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        }
+    });
+    });
+</script>
+
 </body>
 </html>

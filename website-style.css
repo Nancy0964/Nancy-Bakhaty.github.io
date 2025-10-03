@@ -12,72 +12,90 @@
     scroll-behavior: smooth;
 }
 
-body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--light);
-    color: var(--dark);
+html, body {
+    width: 100%;
+    height: 100%;
 }
 
 /* Navbar */
-.navbar {
+header {
+    overflow:auto;
+    background-color:#063D63;
+    margin:0%;
+    border: 0cm;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 40px;
+    padding-right: 20px;
+    list-style-type: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 60px;
-    position: sticky;
+    position:sticky;
     top: 0;
-    background: var(--light);
-    z-index: 999;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    text-align:center;
 }
 
 .logo {
     font-size: 2rem;
     font-weight: bold;
-    color: var(--dark);
+    color: black;
 }
 
-nav a {
-    margin-left: 30px;
-    color: var(--grey);
+header, nav, a {
+    background-color: #063D63;
+    border: none;
+    display: block;
+    color: white;
+    float: right;
+    font-size: 20px;
+    margin: 0%;
+    border: 0%;
+    padding: 30px;
     text-decoration: none;
+    text-align: center;
+    /*margin-left: 30px;
     font-size: 1.1rem;
+    border: 0cm;
+    padding: 10px;
+    margin-left: 7px;
+    margin-right: 7px;*/
 }
 
-nav a:hover {
-    color: var(--accent);
+header, nav, a:hover {
+    float: right;
+    background-color: white;
+    color: #063D63;
+    margin:0%;
+    border: 0%;
+    cursor: pointer;
 }
 
 /* Hero Section */
-.hero {
-    width: 100vw;
-    min-height: 100vh;
-    margin: 0;
-    margin-left: calc(-50vw + 50%);
-    padding: 150px 60px;
-    position: relative;
+.intro {
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    padding-right: 0%;
+    border: 0;
+    margin: 0%;
+    background-image: url("2.jpg");
+    background-size: cover; /* ensures it always covers the screen */
+    background-repeat: no-repeat; /* no tiling */
     display: flex;
-    align-items: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    background-image: url('2.jpg'); 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    align-items: center;   /* center vertically */
 }
 
-.hero-text {    
-    position: relative;
-    z-index: 2;
-    text-align: left;
-    color: #FFFFFF;
-    max-width: 800px;
-    margin-left: 50px;
+
+.intro-text {    
+    color: #020000; /* text contrast */
     font-family: "DM Sans", sans-serif;
-    font-weight: 200;
-    font-size: 3.2rem;
-    line-height: 1.2;
-    text-shadow: none;
+    text-align: left;
+    padding-top: 0px;
+    padding-left: 80px;
+    padding-bottom: 0px;
 }
+
 
 /* Projects */
 .projects {
@@ -116,28 +134,31 @@ nav a:hover {
 /* Sections */
 section {
     padding: 80px 20px;
-    max-width: 900px;
     margin: auto;
     text-align: center;
 }
 
 section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    color: var(--dark);
+    color: black; /* text contrast */
+    font-family: "DM Sans", sans-serif;
+    font-size: 40px;
+    text-align: left;
+    padding-top: 0px;
+    padding-left: 80px;
+    padding-bottom: 0px;
 }
 
 section p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: var(--grey);
-    max-width: 700px;
-    margin: 0 auto;
+    color: #020000; /* text contrast */
+    font-family: "DM Sans", sans-serif;
+    text-align: left;
+    padding-top: 0px;
+    padding-left: 80px;
+    padding-bottom: 0px;
 }
 
-#contact a {
-    color: var(--accent);
-    text-decoration: none;
+#contact h3 {
+    color: blue
 }
 
 #contact a:hover {
@@ -149,34 +170,4 @@ footer {
     padding: 20px;
     border-top: 1px solid #eee;
     color: var(--grey);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .navbar {
-        padding: 15px 30px;
-    }
-    
-    .hero {
-        padding: 100px 30px;
-        min-height: 100vh;
-        margin-left: calc(-50vw + 50%);
-    }
-    
-    .hero-text {
-        font-size: 2.5rem;
-        margin-left: 0;
-        max-width: 100%;
-    }
-    
-    .projects {
-        flex-wrap: wrap;
-        gap: 30px;
-    }
-    
-    .project-card {
-        width: 200px;
-        height: 200px;
-        font-size: 1.5rem;
-    }
 }
