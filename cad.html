@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAD Projects | Engineering Vault</title>
+    <link rel="stylesheet" href="cad-style.css">
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+</head>
+<body>
+    <nav>
+        <ul>
+            <img src="Engineering Vault.jpg" alt="Engineering Vault Logo">
+            <button onclick="DM()">Dark Mode</button>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </nav>
+    <section class="cad-intro">
+        <h1>3D CAD Projects</h1>
+        <p>This section documents my applied learning for Fusion 360 CAD work which is an ongoing record of my development in Design Engineering. Part of my process is to draw from multiple references and sources, adapted and extended with my own logic and design decisions. For Fusion 360 licensing purposes, these designs are intended to showcase my personal work, interests, and skills in Design Engineering and are not to be used for any kind of financial profit.</p>
+    </section>
+    <section class="cad-projects">
+        <button class="collapsible">Industrial Conveyor Belt Design & AI Design Comparison</button>
+        <div class="content">
+            <h2>Intro</h2>
+            <p>This is a conveyor belt 3D CAD design done on Fusion 360 for industrial use. It can be used on its own, work with other tools, or have a robotic arm around it to move objects from the conveyor belt. It is X long and X wide with possible height variations between X and X. Most of the design structure and outline was copied from the YouTube tutorial video ‘Solidworks Tutorial # 232 Belt Conveyor Design Assembly and Motion Study by SW Easy Design’ so credits to SOLIDWORKS EASY DESIGN channel. Some modifications were made such as the legs and stands of the conveyor belt. With the help of MacMaster’s 3D designs for parts they sell, having foldable and extending legs was possible. The X was used to implement the foldable and extendable legs for the conveyor. This modification of the conveyor belt makes the device foldable for easy storage since the first tutorial had a fixed bench, and that is not feasible. The type and shape of the aluminum extrusion used were also different for strength and more surface area. 
+The max weight this conveyor can handle is </p>
+            <p>From a professional and technical perspective, the objectives I set for myself when I started this project were:</p>
+            <ul>
+                <li>Advance my skills in Fusion 360 and learn the tools within the software</li>
+                <li>3D CAD modelling by designing a practical application as an exercise</li>
+                <li>Work on an already existing industry idea and modify things around it rather than invent a new product</li>
+                <li>Compare the work I did with an AI-generated model </li>
+            </ul>
+            <p>Here is a quick overview of the design:</p>
+            <img src="assets/images/ros-sim1.jpg" alt="Simulation 1">
+            <img src="assets/images/ros-sim2.jpg" alt="Simulation 2">
+            <video controls src="assets/videos/ros-sim.mp4"></video>
+        </div>
+        <button class="collapsible">Robotic Arm & AI Design Comparison</button>
+        <div class="content">
+            <h1>Title</h1>
+            <h2>Content</h2>
+            <h3>More content</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <img src="assets/images/nav1.jpg" alt="Navigation 1">
+            <video controls src="assets/videos/nav-demo.mp4"></video>
+        </div>
+        <button class="collapsible">Industrial Conveyor Belt + Robotic Arm with an additional AI Design</button>
+        <div class="content">
+            <h1>Title</h1>
+            <h2>Content</h2>
+            <h3>More content</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <img src="assets/images/node1.jpg" alt="Node 1">
+            <img src="assets/images/node2.jpg" alt="Node 2">
+        </div>
+    </section>
+    <section class="projects" data-aos="fade-up">
+        <div class="project-card" onclick="location.href='ros.html'">ROS</div>
+        <!-- <div class="project-card" onclick="location.href='pcb.html'">PCB</div> -->
+        <div class="project-card" onclick="location.href='python.html'">Python</div>
+        <!-- <div class="project-card" onclick="location.href='fullp.html'">Full Projects</div> -->
+    </section>
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1200 });
+    </script>
+    <script>
+        function DM(){
+            var element = document.body;
+            element.classList.toggle("dark-mode");
+        }
+    </script>
+    <footer>
+        <p>© 2025 Nancy Bakhaty</p>
+    </footer>
+</body>
+</html>
