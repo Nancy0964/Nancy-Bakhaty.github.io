@@ -212,6 +212,24 @@ body ul button:hover {
     float: left;
 }
 
+.intro h2 {    
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    color: #1E1E1E;
+    padding-top: 0px;
+    padding-left: 35px;
+    padding-bottom: 0px;
+    padding-right: 500px;
+    float: left;
+}
+
+.box_info p { 
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    text-align: left;
+    padding: 30px 150px;
+}
+
 .projects {
     display: flex;
     gap: 50px;
@@ -246,7 +264,6 @@ body ul button:hover {
     transform: scale(1.05);
 }
 
-
 #about {
     padding: 30px 150px;
     margin: auto;
@@ -263,6 +280,31 @@ body ul button:hover {
 }
 
 #about p { 
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    text-align: left;
+    padding-top: 0px;
+    padding-left: 70px;
+    padding-bottom: 0px;
+}
+
+
+#achv {
+    padding: 30px 150px;
+    margin: auto;
+    text-align: center;
+}
+
+#achv h2 { 
+    font-family: 'Oswald', sans-serif;
+    font-size: 45px;
+    text-align: left;
+    padding-top: 0px;
+    padding-left: 70px;
+    padding-bottom: 0px;
+}
+
+#achv p { 
     font-family: Arial, Helvetica, sans-serif;
     font-size: 25px;
     text-align: left;
@@ -293,7 +335,7 @@ body ul button:hover {
 
 .testCard {
     padding: 25px;
-    border-left: 6px solid #840032;
+    border-left: 6px solid #526D82;
     border-radius: 10px;
     text-align: left;
     padding-left: 70px;

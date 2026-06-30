@@ -1,0 +1,1058 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project Showcase Component</title>
+  <style>
+:root {
+  --page-bg: #f7f5f0;
+  --surface: #ffffff;
+  --surface-soft: #f1eee8;
+  --text: #171717;
+  --muted: #6f6a62;
+  --line: rgba(23, 23, 23, 0.12);
+  --line-strong: rgba(23, 23, 23, 0.24);
+  --shadow: 0 24px 70px rgba(0, 0, 0, 0.08);
+  --sphere-shadow: 0 34px 90px rgba(24, 17, 43, 0.14);
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --container: 1180px;
+  --focus: #111111;
+  --panel-width: clamp(300px, 62vw, 760px);
+  --stage-padding: clamp(32px, 5vw, 64px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 16% 10%, rgba(255, 255, 255, 0.94), transparent 32%),
+    radial-gradient(circle at 84% 18%, rgba(225, 220, 210, 0.74), transparent 32%),
+    var(--page-bg);
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+}
+
+.project-showcase {
+  width: min(100% - 32px, var(--container));
+  margin: 0 auto;
+  padding: 72px 0;
+}
+
+.project-showcase__header {
+  margin-bottom: 24px;
+}
+
+.project-showcase__copy {
+  min-width: 0;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.project-showcase h1 {
+  margin: 0;
+  font-size: clamp(2.35rem, 5vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+}
+
+.project-showcase__intro {
+  max-width: 650px;
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/*
+  Horizontal stage:
+  - Native horizontal scroll remains intact.
+  - The strip gets depth from perspective, side masks, side shadows, and per-panel transforms.
+  - Vertical project scrolling is unchanged inside .project-panel__body.
+*/
+.project-showcase__stage {
+  position: relative;
+  isolation: isolate;
+  margin-top: 26px;
+  padding: 18px var(--stage-padding) 22px;
+  border-radius: 42px;
+  perspective: 1400px;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 170% at 50% 50%, rgba(255, 255, 255, 0.66), rgba(255, 255, 255, 0.2) 42%, rgba(23, 23, 23, 0.04) 72%, transparent 100%),
+    linear-gradient(90deg, rgba(23, 23, 23, 0.035), rgba(255, 255, 255, 0.56) 18%, rgba(255, 255, 255, 0.64) 50%, rgba(255, 255, 255, 0.56) 82%, rgba(23, 23, 23, 0.035));
+  box-shadow: var(--sphere-shadow);
+}
+
+.project-showcase__stage::before,
+.project-showcase__stage::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  z-index: 2;
+  width: 13%;
+  pointer-events: none;
+}
+
+.project-showcase__stage::before {
+  left: 0;
+  background:
+    radial-gradient(150% 100% at 100% 50%, transparent 46%, rgba(247, 245, 240, 0.34) 72%, rgba(247, 245, 240, 0.74) 100%),
+    linear-gradient(90deg, rgba(247, 245, 240, 0.92), rgba(247, 245, 240, 0));
+}
+
+.project-showcase__stage::after {
+  right: 0;
+  background:
+    radial-gradient(150% 100% at 0% 50%, transparent 46%, rgba(247, 245, 240, 0.34) 72%, rgba(247, 245, 240, 0.74) 100%),
+    linear-gradient(270deg, rgba(247, 245, 240, 0.92), rgba(247, 245, 240, 0));
+}
+
+.project-track {
+  display: flex;
+  gap: clamp(18px, 3vw, 34px);
+  min-height: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 8px calc((100% - var(--panel-width)) / 2) 16px;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: calc((100% - var(--panel-width)) / 2);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(23, 23, 23, 0.2) transparent;
+  overscroll-behavior-x: contain;
+  border-radius: 34px;
+  outline: none;
+  transform-style: preserve-3d;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 3%, #000 97%, transparent 100%);
+}
+
+.project-track::-webkit-scrollbar {
+  height: 8px;
+}
+
+.project-track::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.project-track::-webkit-scrollbar-thumb {
+  background: rgba(23, 23, 23, 0.16);
+  border-radius: 999px;
+}
+
+.project-track::-webkit-scrollbar-thumb:hover {
+  background: rgba(23, 23, 23, 0.28);
+}
+
+.project-track:focus-visible,
+.project-panel__body:focus-visible,
+.nav-button:focus-visible,
+.project-dot:focus-visible,
+video:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 4px;
+}
+
+.project-panel {
+  --panel-rotate-y: 0deg;
+  --panel-scale: 1;
+  --panel-z: 0px;
+  --panel-opacity: 1;
+
+  flex: 0 0 var(--panel-width);
+  min-width: 0;
+  height: min(78vh, 820px);
+  min-height: 620px;
+  scroll-snap-align: center;
+  opacity: var(--panel-opacity);
+  transform:
+    translateZ(var(--panel-z))
+    rotateY(var(--panel-rotate-y))
+    scale(var(--panel-scale));
+  transform-style: preserve-3d;
+  transition:
+    transform 220ms ease,
+    opacity 220ms ease;
+  will-change: transform, opacity;
+}
+
+.project-panel[aria-current="true"] {
+  z-index: 3;
+}
+
+.project-panel__shell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow:
+    0 36px 80px rgba(0, 0, 0, 0.12),
+    0 2px 0 rgba(255, 255, 255, 0.7) inset;
+  backface-visibility: hidden;
+}
+
+.project-panel__shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.22), transparent 18%, transparent 82%, rgba(0,0,0,0.035));
+}
+
+.project-panel__top {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 18px;
+  align-items: start;
+  padding: clamp(22px, 4vw, 38px);
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.74));
+}
+
+.project-number {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.project-panel h2 {
+  margin: 0;
+  font-size: clamp(1.9rem, 4vw, 4.25rem);
+  line-height: 0.96;
+  letter-spacing: -0.055em;
+}
+
+.project-panel__top p:last-child {
+  max-width: 760px;
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.project-panel__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: clamp(22px, 4vw, 38px);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(23, 23, 23, 0.22) transparent;
+  overscroll-behavior-y: contain;
+}
+
+.project-panel__body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.project-panel__body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.project-panel__body::-webkit-scrollbar-thumb {
+  background: rgba(23, 23, 23, 0.16);
+  border-radius: 999px;
+}
+
+.project-panel__body::-webkit-scrollbar-thumb:hover {
+  background: rgba(23, 23, 23, 0.28);
+}
+
+.project-hero-media,
+.media-grid figure,
+.video-block,
+.project-content-grid section,
+.project-outcome {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.68);
+}
+
+.project-hero-media {
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+.project-hero-media img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.project-content-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 28px;
+}
+
+.project-content-grid section,
+.project-outcome {
+  padding: 24px;
+  border-radius: var(--radius-md);
+}
+
+.project-panel h3 {
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+  letter-spacing: -0.02em;
+}
+
+.project-panel p {
+  color: var(--muted);
+}
+
+.project-content-grid p,
+.project-outcome p,
+.video-block p {
+  margin: 0;
+  line-height: 1.65;
+}
+
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.media-grid figure {
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+.media-grid img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.media-grid figcaption {
+  padding: 14px 16px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.video-block {
+  margin-top: 28px;
+  padding: 18px;
+  border-radius: var(--radius-md);
+}
+
+.video-block video {
+  width: 100%;
+  border-radius: calc(var(--radius-md) - 8px);
+  background: #000000;
+}
+
+.video-block p {
+  margin-top: 12px;
+}
+
+.project-outcome {
+  margin-top: 28px;
+}
+
+.nav-button,
+.project-dot {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--text);
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    opacity 180ms ease;
+}
+
+.nav-button {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+}
+
+.nav-button:hover,
+.project-dot:hover {
+  border-color: var(--line-strong);
+  background: #ffffff;
+}
+
+.nav-button:active {
+  transform: scale(0.96);
+}
+
+.nav-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.project-nav-button {
+  position: absolute;
+  top: 50%;
+  z-index: 8;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.14);
+  backdrop-filter: blur(14px);
+}
+
+.project-nav-button span {
+  font-size: 2rem;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+
+.project-nav-button--prev {
+  left: clamp(10px, 2vw, 24px);
+  transform: translateY(-50%);
+}
+
+.project-nav-button--next {
+  right: clamp(10px, 2vw, 24px);
+  transform: translateY(-50%);
+}
+
+.project-nav-button--prev:active,
+.project-nav-button--next:active {
+  transform: translateY(-50%) scale(0.96);
+}
+
+.project-strip-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 16px;
+}
+
+.project-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.project-dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border-radius: 999px;
+}
+
+.project-dot.is-active {
+  width: 28px;
+  background: var(--text);
+  border-color: var(--text);
+}
+
+.scroll-hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  text-align: right;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+}
+
+@media (max-width: 820px) {
+  :root {
+    --panel-width: min(78vw, 620px);
+    --stage-padding: 28px;
+  }
+
+  .project-showcase {
+    width: min(100% - 24px, var(--container));
+    padding: 48px 0;
+  }
+
+  .project-showcase__stage {
+    padding-inline: 0;
+    border-radius: 32px;
+  }
+
+  .project-track {
+    padding-inline: calc((100% - var(--panel-width)) / 2);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 2%, #000 98%, transparent 100%);
+  }
+
+  .project-panel {
+    height: 76vh;
+    min-height: 560px;
+  }
+
+  .project-content-grid,
+  .media-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-panel__top {
+    grid-template-columns: 1fr;
+  }
+
+  .project-strip-footer {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .scroll-hint {
+    text-align: left;
+  }
+}
+
+@media (max-width: 520px) {
+  :root {
+    --panel-width: 82vw;
+  }
+
+  .project-panel {
+    height: 78vh;
+    min-height: 520px;
+  }
+
+  .nav-button {
+    width: 42px;
+    height: 42px;
+  }
+
+  .project-nav-button span {
+    font-size: 1.7rem;
+  }
+
+  .project-panel__body {
+    padding-bottom: 52px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .project-panel,
+  .nav-button,
+  .project-dot {
+    transition: none;
+  }
+}
+
+</style>
+</head>
+<body>
+  <main>
+    <section class="project-showcase" data-project-showcase aria-labelledby="project-showcase-title">
+      <div class="project-showcase__header">
+        <div class="project-showcase__copy">
+          <p class="eyebrow">Selected Work</p>
+          <h1 id="project-showcase-title">Project Showcase</h1>
+          <p class="project-showcase__intro">
+            Move horizontally only inside this section to choose a project. Once inside a project,
+            scroll vertically through its details, images, and videos.
+          </p>
+        </div>
+      </div>
+
+      <div class="project-showcase__stage" aria-label="Project carousel controls and scroll area">
+        <button class="nav-button project-nav-button project-nav-button--prev" type="button" data-project-prev aria-label="Previous project" aria-controls="project-track">
+          <span aria-hidden="true">‹</span>
+        </button>
+
+        <div
+        class="project-track"
+        id="project-track"
+        data-project-track
+        tabindex="0"
+        aria-label="Horizontally scrollable list of projects"
+      >
+        <article class="project-panel" data-project-panel data-project-title="Project Atlas" aria-labelledby="project-atlas-title">
+          <div class="project-panel__shell">
+            <header class="project-panel__top">
+              <p class="project-number">01</p>
+              <div>
+                <h2 id="project-atlas-title">Project Atlas</h2>
+                <p>Brand system, launch page, and visual direction for a digital product.</p>
+              </div>
+            </header>
+
+            <div class="project-panel__body" tabindex="0" aria-label="Scrollable details for Project Atlas">
+              <div class="project-hero-media">
+                <img src="project_showcase_component/assets/atlas-cover.svg" alt="Placeholder cover visual for Project Atlas" />
+              </div>
+
+              <div class="project-content-grid">
+                <section>
+                  <h3>Overview</h3>
+                  <p>Use this area for the project summary, objective, audience, and the reason the project exists.</p>
+                </section>
+                <section>
+                  <h3>Role</h3>
+                  <p>Describe your responsibilities: strategy, UX, UI, development, content, research, or production.</p>
+                </section>
+                <section>
+                  <h3>Challenge</h3>
+                  <p>Explain the main user or business problem. Keep it direct and measurable when possible.</p>
+                </section>
+                <section>
+                  <h3>Solution</h3>
+                  <p>Describe the design and development choices that solved the problem.</p>
+                </section>
+              </div>
+
+              <div class="media-grid">
+                <figure>
+                  <img src="project_showcase_component/assets/atlas-detail-1.svg" alt="Placeholder detail visual showing Project Atlas process" />
+                  <figcaption>Process visual</figcaption>
+                </figure>
+                <figure>
+                  <img src="project_showcase_component/assets/atlas-detail-2.svg" alt="Placeholder detail visual showing Project Atlas responsive layout" />
+                  <figcaption>Responsive layout</figcaption>
+                </figure>
+              </div>
+
+              <div class="video-block">
+                <video controls preload="metadata" poster="project_showcase_component/assets/atlas-poster.svg">
+                  <source src="project_showcase_component/assets/placeholder-demo.mp4" type="video/mp4" />
+                  Your browser does not support the video element.
+                </video>
+                <p>Video only plays when the user clicks play.</p>
+              </div>
+
+              <section class="project-outcome">
+                <h3>Outcome</h3>
+                <p>Add results, launch notes, conversion changes, usability improvements, or client feedback here.</p>
+              </section>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-panel" data-project-panel data-project-title="Project Nova" aria-labelledby="project-nova-title">
+          <div class="project-panel__shell">
+            <header class="project-panel__top">
+              <p class="project-number">02</p>
+              <div>
+                <h2 id="project-nova-title">Project Nova</h2>
+                <p>Interactive product page for feature education, comparison, and demo content.</p>
+              </div>
+            </header>
+
+            <div class="project-panel__body" tabindex="0" aria-label="Scrollable details for Project Nova">
+              <div class="project-hero-media">
+                <img src="project_showcase_component/assets/nova-cover.svg" alt="Placeholder cover visual for Project Nova" />
+              </div>
+              <div class="project-content-grid">
+                <section><h3>Overview</h3><p>Introduce what the product is and what users need to understand first.</p></section>
+                <section><h3>Role</h3><p>Describe your front-end, design, UX, copy, or production responsibilities.</p></section>
+                <section><h3>Challenge</h3><p>Explain what was unclear, slow, inaccessible, or hard to convert.</p></section>
+                <section><h3>Solution</h3><p>Show how the layout, media, and copy make the product easier to evaluate.</p></section>
+              </div>
+              <div class="media-grid">
+                <figure><img src="project_showcase_component/assets/nova-detail-1.svg" alt="Placeholder detail visual showing Project Nova feature comparison" /><figcaption>Feature comparison</figcaption></figure>
+                <figure><img src="project_showcase_component/assets/nova-detail-2.svg" alt="Placeholder detail visual showing Project Nova interface detail" /><figcaption>Interface detail</figcaption></figure>
+              </div>
+              <div class="video-block">
+                <video controls preload="metadata" poster="project_showcase_component/assets/nova-poster.svg">
+                  <source src="project_showcase_component/assets/placeholder-demo.mp4" type="video/mp4" />
+                  Your browser does not support the video element.
+                </video>
+                <p>Use this for demos, walkthroughs, launch videos, or screen recordings.</p>
+              </div>
+              <section class="project-outcome"><h3>Outcome</h3><p>Add impact metrics and what changed after launch.</p></section>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-panel" data-project-panel data-project-title="Project Echo" aria-labelledby="project-echo-title">
+          <div class="project-panel__shell">
+            <header class="project-panel__top">
+              <p class="project-number">03</p>
+              <div>
+                <h2 id="project-echo-title">Project Echo</h2>
+                <p>Case-study style project with process, visuals, decisions, and final results.</p>
+              </div>
+            </header>
+            <div class="project-panel__body" tabindex="0" aria-label="Scrollable details for Project Echo">
+              <div class="project-hero-media"><img src="project_showcase_component/assets/echo-cover.svg" alt="Placeholder cover visual for Project Echo" /></div>
+              <div class="project-content-grid">
+                <section><h3>Overview</h3><p>Use this section for a compact story of the project.</p></section>
+                <section><h3>Role</h3><p>List your specific responsibilities and tools.</p></section>
+                <section><h3>Challenge</h3><p>Describe what made the project difficult or important.</p></section>
+                <section><h3>Solution</h3><p>Explain the major decisions and how they improved the experience.</p></section>
+              </div>
+              <div class="media-grid">
+                <figure><img src="project_showcase_component/assets/echo-detail-1.svg" alt="Placeholder detail visual showing Project Echo wireframes" /><figcaption>Wireframes</figcaption></figure>
+                <figure><img src="project_showcase_component/assets/echo-detail-2.svg" alt="Placeholder detail visual showing Project Echo final design" /><figcaption>Final design</figcaption></figure>
+              </div>
+              <div class="video-block">
+                <video controls preload="metadata" poster="project_showcase_component/assets/echo-poster.svg"><source src="project_showcase_component/assets/placeholder-demo.mp4" type="video/mp4" />Your browser does not support the video element.</video>
+                <p>Native controls are kept for accessibility and browser consistency.</p>
+              </div>
+              <section class="project-outcome"><h3>Outcome</h3><p>Add results, feedback, or next steps.</p></section>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-panel" data-project-panel data-project-title="Project Orbit" aria-labelledby="project-orbit-title">
+          <div class="project-panel__shell">
+            <header class="project-panel__top">
+              <p class="project-number">04</p>
+              <div>
+                <h2 id="project-orbit-title">Project Orbit</h2>
+                <p>Content platform refresh with a cleaner structure and smoother browsing pattern.</p>
+              </div>
+            </header>
+            <div class="project-panel__body" tabindex="0" aria-label="Scrollable details for Project Orbit">
+              <div class="project-hero-media"><img src="project_showcase_component/assets/orbit-cover.svg" alt="Placeholder cover visual for Project Orbit" /></div>
+              <div class="project-content-grid">
+                <section><h3>Overview</h3><p>Summarize the platform, target user, and main project goal.</p></section>
+                <section><h3>Role</h3><p>Explain your contribution to structure, layout, interaction, or implementation.</p></section>
+                <section><h3>Challenge</h3><p>Call out content density, navigation issues, or conversion problems.</p></section>
+                <section><h3>Solution</h3><p>Explain how the updated system improves browsing and comprehension.</p></section>
+              </div>
+              <div class="media-grid">
+                <figure><img src="project_showcase_component/assets/orbit-detail-1.svg" alt="Placeholder detail visual showing Project Orbit content structure" /><figcaption>Content structure</figcaption></figure>
+                <figure><img src="project_showcase_component/assets/orbit-detail-2.svg" alt="Placeholder detail visual showing Project Orbit page layout" /><figcaption>Page layout</figcaption></figure>
+              </div>
+              <div class="video-block">
+                <video controls preload="metadata" poster="project_showcase_component/assets/orbit-poster.svg"><source src="project_showcase_component/assets/placeholder-demo.mp4" type="video/mp4" />Your browser does not support the video element.</video>
+                <p>Replace the source with a real project demo video.</p>
+              </div>
+              <section class="project-outcome"><h3>Outcome</h3><p>Document the project’s final impact.</p></section>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-panel" data-project-panel data-project-title="Project Lumen" aria-labelledby="project-lumen-title">
+          <div class="project-panel__shell">
+            <header class="project-panel__top">
+              <p class="project-number">05</p>
+              <div>
+                <h2 id="project-lumen-title">Project Lumen</h2>
+                <p>Video-first project page for campaigns, launches, and visual storytelling.</p>
+              </div>
+            </header>
+            <div class="project-panel__body" tabindex="0" aria-label="Scrollable details for Project Lumen">
+              <div class="project-hero-media"><img src="project_showcase_component/assets/lumen-cover.svg" alt="Placeholder cover visual for Project Lumen" /></div>
+              <div class="project-content-grid">
+                <section><h3>Overview</h3><p>Use this for campaign context and audience expectations.</p></section>
+                <section><h3>Role</h3><p>Describe your design, media, development, or strategy contribution.</p></section>
+                <section><h3>Challenge</h3><p>Explain the issue the project needed to solve.</p></section>
+                <section><h3>Solution</h3><p>Show how video, visuals, and copy work together without overwhelming the page.</p></section>
+              </div>
+              <div class="media-grid">
+                <figure><img src="project_showcase_component/assets/lumen-detail-1.svg" alt="Placeholder detail visual showing Project Lumen campaign asset" /><figcaption>Campaign asset</figcaption></figure>
+                <figure><img src="project_showcase_component/assets/lumen-detail-2.svg" alt="Placeholder detail visual showing Project Lumen final layout" /><figcaption>Final layout</figcaption></figure>
+              </div>
+              <div class="video-block">
+                <video controls preload="metadata" poster="project_showcase_component/assets/lumen-poster.svg"><source src="project_showcase_component/assets/placeholder-demo.mp4" type="video/mp4" />Your browser does not support the video element.</video>
+                <p>Videos do not autoplay. Users choose when to play them.</p>
+              </div>
+              <section class="project-outcome"><h3>Outcome</h3><p>Add performance, campaign, or engagement results here.</p></section>
+            </div>
+          </div>
+        </article>
+      </div>
+
+        <button class="nav-button project-nav-button project-nav-button--next" type="button" data-project-next aria-label="Next project" aria-controls="project-track">
+          <span aria-hidden="true">›</span>
+        </button>
+      </div>
+
+      <div class="project-strip-footer">
+        <div class="project-dots" data-project-dots aria-label="Choose project"></div>
+        <p class="scroll-hint" aria-hidden="true">Use the side arrows, dots, trackpad horizontal scroll, or swipe inside the project strip.</p>
+      </div>
+
+      <p class="sr-only" aria-live="polite" data-project-status>Showing project 1 of 5</p>
+    </section>
+  </main>
+
+  <script>
+const showcase = document.querySelector("[data-project-showcase]");
+const track = showcase?.querySelector("[data-project-track]");
+const panels = Array.from(showcase?.querySelectorAll("[data-project-panel]") || []);
+const dotsContainer = showcase?.querySelector("[data-project-dots]");
+const prevButton = showcase?.querySelector("[data-project-prev]");
+const nextButton = showcase?.querySelector("[data-project-next]");
+const statusText = showcase?.querySelector("[data-project-status]");
+
+let activeIndex = 0;
+let scrollRaf = null;
+
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(value, max));
+}
+
+function clampIndex(index) {
+  return Math.max(0, Math.min(index, panels.length - 1));
+}
+
+function getPanelLeft(index) {
+  const panel = panels[index];
+  const centeredOffset = (track.clientWidth - panel.clientWidth) / 2;
+
+  return panel.offsetLeft - track.offsetLeft - centeredOffset;
+}
+
+function pauseVideosOutsideProject(index) {
+  panels.forEach((panel, panelIndex) => {
+    if (panelIndex === index) return;
+
+    panel.querySelectorAll("video").forEach((video) => {
+      video.pause();
+    });
+  });
+}
+
+function updateSphereStrip() {
+  if (!track || panels.length === 0) return;
+
+  const trackCenter = track.scrollLeft + track.clientWidth / 2;
+  const panelReferenceWidth = panels[0]?.clientWidth || 1;
+
+  panels.forEach((panel) => {
+    const panelCenter = panel.offsetLeft + panel.clientWidth / 2;
+    const distance = (panelCenter - trackCenter) / panelReferenceWidth;
+    const limitedDistance = clamp(distance, -1.35, 1.35);
+    const distanceAbs = Math.abs(limitedDistance);
+
+    const rotateY = limitedDistance * -9;
+    const scale = 1 - Math.min(distanceAbs * 0.075, 0.095);
+    const translateZ = -Math.min(distanceAbs * 68, 82);
+    const opacity = 1 - Math.min(distanceAbs * 0.22, 0.32);
+
+    panel.style.setProperty("--panel-rotate-y", `${rotateY.toFixed(3)}deg`);
+    panel.style.setProperty("--panel-scale", scale.toFixed(3));
+    panel.style.setProperty("--panel-z", `${translateZ.toFixed(3)}px`);
+    panel.style.setProperty("--panel-opacity", opacity.toFixed(3));
+  });
+}
+
+function setActiveProject(index, options = {}) {
+  const nextIndex = clampIndex(index);
+  const shouldPauseVideos = options.pauseVideos !== false;
+
+  activeIndex = nextIndex;
+
+  panels.forEach((panel, panelIndex) => {
+    const isActive = panelIndex === activeIndex;
+    panel.toggleAttribute("aria-current", isActive);
+  });
+
+  const dots = Array.from(dotsContainer.querySelectorAll("[data-project-dot]"));
+
+  dots.forEach((dot, dotIndex) => {
+    const isActive = dotIndex === activeIndex;
+    dot.classList.toggle("is-active", isActive);
+
+    if (isActive) {
+      dot.setAttribute("aria-current", "true");
+    } else {
+      dot.removeAttribute("aria-current");
+    }
+  });
+
+  prevButton.disabled = activeIndex === 0;
+  nextButton.disabled = activeIndex === panels.length - 1;
+
+  if (statusText) {
+    statusText.textContent = `Showing project ${activeIndex + 1} of ${panels.length}`;
+  }
+
+  if (shouldPauseVideos) {
+    pauseVideosOutsideProject(activeIndex);
+  }
+}
+
+function scrollToProject(index) {
+  const nextIndex = clampIndex(index);
+
+  track.scrollTo({
+    left: getPanelLeft(nextIndex),
+    behavior: prefersReducedMotion ? "auto" : "smooth"
+  });
+
+  setActiveProject(nextIndex);
+  updateSphereStrip();
+}
+
+function getClosestPanelIndex() {
+  const trackCenter = track.scrollLeft + track.clientWidth / 2;
+  let closestIndex = 0;
+  let smallestDistance = Infinity;
+
+  panels.forEach((panel, index) => {
+    const panelCenter = panel.offsetLeft + panel.clientWidth / 2;
+    const distance = Math.abs(trackCenter - panelCenter);
+
+    if (distance < smallestDistance) {
+      smallestDistance = distance;
+      closestIndex = index;
+    }
+  });
+
+  return closestIndex;
+}
+
+function buildDots() {
+  const fragment = document.createDocumentFragment();
+
+  panels.forEach((panel, index) => {
+    const title = panel.dataset.projectTitle || `Project ${index + 1}`;
+    const dot = document.createElement("button");
+
+    dot.type = "button";
+    dot.className = "project-dot";
+    dot.dataset.projectDot = String(index);
+    dot.setAttribute("aria-label", `Go to ${title}, project ${index + 1} of ${panels.length}`);
+
+    dot.addEventListener("click", () => {
+      scrollToProject(index);
+    });
+
+    fragment.appendChild(dot);
+  });
+
+  dotsContainer.replaceChildren(fragment);
+}
+
+function setPanelAccessibility() {
+  panels.forEach((panel, index) => {
+    panel.setAttribute("aria-posinset", String(index + 1));
+    panel.setAttribute("aria-setsize", String(panels.length));
+  });
+}
+
+function handleTrackScroll() {
+  if (scrollRaf) {
+    window.cancelAnimationFrame(scrollRaf);
+  }
+
+  scrollRaf = window.requestAnimationFrame(() => {
+    updateSphereStrip();
+
+    const closestIndex = getClosestPanelIndex();
+
+    if (closestIndex !== activeIndex) {
+      setActiveProject(closestIndex);
+    }
+  });
+}
+
+function handleTrackKeydown(event) {
+  const key = event.key;
+  const target = event.target;
+  const isEditingOrMedia = target.closest("button, a, input, textarea, select, video, iframe, [contenteditable='true']");
+
+  if (isEditingOrMedia && target !== track) return;
+
+  if (key === "ArrowRight") {
+    event.preventDefault();
+    scrollToProject(activeIndex + 1);
+  }
+
+  if (key === "ArrowLeft") {
+    event.preventDefault();
+    scrollToProject(activeIndex - 1);
+  }
+
+  if (key === "Home") {
+    event.preventDefault();
+    scrollToProject(0);
+  }
+
+  if (key === "End") {
+    event.preventDefault();
+    scrollToProject(panels.length - 1);
+  }
+}
+
+function debounce(callback, delay = 120) {
+  let timeoutId;
+
+  return (...args) => {
+    window.clearTimeout(timeoutId);
+    timeoutId = window.setTimeout(() => callback(...args), delay);
+  };
+}
+
+function initProjectShowcase() {
+  if (!showcase || !track || panels.length === 0 || !dotsContainer || !prevButton || !nextButton) {
+    return;
+  }
+
+  buildDots();
+  setPanelAccessibility();
+  setActiveProject(0, { pauseVideos: false });
+  updateSphereStrip();
+
+  prevButton.addEventListener("click", () => scrollToProject(activeIndex - 1));
+  nextButton.addEventListener("click", () => scrollToProject(activeIndex + 1));
+  track.addEventListener("scroll", handleTrackScroll, { passive: true });
+  track.addEventListener("keydown", handleTrackKeydown);
+
+  window.addEventListener(
+    "resize",
+    debounce(() => {
+      scrollToProject(activeIndex);
+      updateSphereStrip();
+    })
+  );
+}
+
+initProjectShowcase();
+
+</script>
+</body>
+</html>
