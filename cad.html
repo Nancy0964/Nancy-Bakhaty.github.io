@@ -1,526 +1,375 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CAD Projects | Engineering Vault</title>
     <link rel="stylesheet" href="cad-style.css">
-    <link href='https://fonts.googleapis.com/css?family=Oswald' rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
-</head>
-<body>
-    <nav>
-        <ul>
-            <img src="Engineering Vault.jpg" alt="Engineering Vault Logo">
-            <button onclick="DM()">Dark Mode</button>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#about">About Me</a></li>
-            <li><a href="index.html">Home</a></li>
-        </ul>
+  </head>
+  <body>
+    <label class="dlB" id="themeSwitch">
+      <input type="checkbox" onclick ="DM()">
+      <span class="slider">
+        <span class="mode-text light-text">🔆</span>
+        <span class="mode-text dark-text">🌙</span>
+      </span>
+    </label>
+    <button onclick="topFunction()" id="topB" title="Go to top">↑</button>
+    <nav class="site-nav">
+      <ul class="site-nav__list">
+        <li class="site-nav__logo">
+          <a href="index.html" aria-label="Engineering Vault Home">
+            <img src="EV.jpg" alt="Engineering Vault Logo">
+          </a>
+        </li>
+        <li class="site-nav__item">
+          <a href="index.html">Home</a>
+        </li>
+        <li class="site-nav__item">
+          <a href="#about">About Me</a>
+        </li>
+        <li class="site-nav__item">
+          <a href="#contact">Contact</a>
+        </li>
+        <li class="site-nav__item">
+          <button type="button" onclick="DM()">Dark Mode</button>
+        </li>
+      </ul>
     </nav>
     <section class="cad-intro">
         <h1>3D CAD Projects</h1>
-        <p>A record of my Fusion 360 CAD work in Design Engineering. Each project below builds on multiple references with my own design decisions. Click on a project title to find out more.</p>
+        <p>
+            A record of my Fusion 360 CAD work in Design Engineering. Each project below builds on multiple references with my own design decisions. Click on a project title to find out more.
+        </p>
     </section>
+
     <section class="cad-projects">
-        <button class="collapsible">Industrial Conveyor Belt 3D CAD Design</button>
-        <div class="content">
-            <h2>Intro</h2>
-            <p>This is a conveyor belt 3D CAD design done on Fusion 360 for industrial use. It can be used on its own, work with other tools, or have a robotic arm around it to move objects from the conveyor belt. It is X long and X wide with possible height variations between X and X. Most of the design structure and outline was copied from the YouTube tutorial video ‘Solidworks Tutorial # 232 Belt Conveyor Design Assembly and Motion Study by SW Easy Design’ so credits to SOLIDWORKS EASY DESIGN channel. Some modifications were made such as the legs and stands of the conveyor belt. With the help of MacMaster’s 3D designs for parts they sell, having foldable and extending legs was possible. The X was used to implement the foldable and extendable legs for the conveyor. This modification of the conveyor belt makes the device foldable for easy storage since the first tutorial had a fixed bench, and that is not feasible. The type and shape of the aluminum extrusion used were also different for strength and more surface area. 
-The max weight this conveyor can handle is </p>
-            <p>From a professional and technical perspective, the objectives I set for myself when I started this project were:</p>
-            <ul>
-                <li>Advance my skills in Fusion 360 and learn the tools within the software</li>
-                <li>3D CAD modelling by designing a practical application as an exercise</li>
-                <li>Work on an already existing industry idea and modify things around it rather than invent a new product</li>
-                <li>Compare the work I did with an AI-generated model </li>
-            </ul>
-            <p>Here is a quick overview of the design:</p>
-            <img src="assets/images/ros-sim1.jpg" alt="Simulation 1">
-            <img src="assets/images/ros-sim2.jpg" alt="Simulation 2">
-            <video controls src="assets/videos/ros-sim.mp4"></video>
-        </div>
-        <button class="collapsible">Robotic Arm 3D CAD Design</button>
-        <div class="content">
-            <h1>Title</h1>
-            <h2>Content</h2>
-            <h3>More content</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <img src="assets/images/nav1.jpg" alt="Navigation 1">
-            <video controls src="assets/videos/nav-demo.mp4"></video>
-        </div>
-        <button class="collapsible">Industrial Conveyor Belt + Robotic Arm 3D CAD Design</button>
-        <div class="content">
-            <h1>Title</h1>
-            <h2>Content</h2>
-            <h3>More content</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <img src="assets/images/node1.jpg" alt="Node 1">
-            <img src="assets/images/node2.jpg" alt="Node 2">
-        </div>
+        <section class="project-showcase" data-project-showcase aria-labelledby="project-showcase-title">
+            <div class="project-showcase__stage" aria-label="Project carousel controls and scroll area">
+                <button
+                    class="project-nav-button project-nav-button--prev"
+                    type="button"
+                    data-project-prev
+                    aria-label="Previous project"
+                    aria-controls="project-track"
+                >
+                    <span aria-hidden="true">‹</span>
+                </button>
+
+                <div
+                    class="project-track"
+                    id="project-track"
+                    data-project-track
+                    tabindex="0"
+                    aria-label="Horizontally scrollable list of CAD projects"
+                >
+                    <!-- Project 1 -->
+                    <article
+                        class="project-panel"
+                        data-project-panel
+                        data-project-title="CAD Project 1"
+                        aria-labelledby="cad-project-1-title"
+                    >
+                        <div class="project-panel__shell">
+                            <header class="project-panel__top">
+                                <p class="project-number">01</p>
+                                <div>
+                                    <h3 id="cad-project-1-title">Conveyor Belt Design</h3>
+                                    <p>Replace this with your real CAD project summary.</p>
+                                </div>
+                            </header>
+
+                            <div class="project-panel__body" tabindex="0" aria-label="Scrollable details for CAD Project 1">
+                                <div class="project-hero-media">
+                                    <img src="assets/cad-project-1-cover.jpg" alt="CAD Project 1 cover image">
+                                </div>
+
+                                <div class="project-content-grid">
+                                    <section>
+                                        <h4>Overview</h4>
+                                        <p>Replace this with the project goal, model type, and design context.</p>
+                                    </section>
+
+                                    <section>
+                                        <h4>Tools</h4>
+                                        <p>Fusion 360, sketches, constraints, assemblies, rendering, or any tools you used.</p>
+                                    </section>
+
+                                    <section>
+                                        <h4>Design Decisions</h4>
+                                        <p>Explain what you changed from references and why you made those decisions.</p>
+                                    </section>
+
+                                    <section>
+                                        <h4>What I Learned</h4>
+                                        <p>Explain the technical or design skill you improved through this project.</p>
+                                    </section>
+                                </div>
+
+                                <div class="media-grid">
+                                    <figure>
+                                        <img src="assets/cad-project-1-detail-1.jpg" alt="CAD Project 1 detail image one">
+                                        <figcaption>Detail view</figcaption>
+                                    </figure>
+
+                                    <figure>
+                                        <img src="assets/cad-project-1-detail-2.jpg" alt="CAD Project 1 detail image two">
+                                        <figcaption>Rendered view</figcaption>
+                                    </figure>
+                                </div>
+
+                                <div class="video-block">
+                                    <video controls preload="metadata" poster="assets/cad-project-1-poster.jpg">
+                                        <source src="assets/cad-project-1-demo.mp4" type="video/mp4">
+                                        Your browser does not support the video element.
+                                    </video>
+                                    <p>Replace this with a short model rotation, process clip, or walkthrough.</p>
+                                </div>
+
+                                <section class="project-outcome">
+                                    <h4>Outcome</h4>
+                                    <p>Replace this with final results, improvements, or notes about the finished model.</p>
+                                </section>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 2 -->
+                    <article
+                        class="project-panel"
+                        data-project-panel
+                        data-project-title="CAD Project 2"
+                        aria-labelledby="cad-project-2-title"
+                    >
+                        <div class="project-panel__shell">
+                            <header class="project-panel__top">
+                                <p class="project-number">02</p>
+                                <div>
+                                    <h3 id="cad-project-2-title">Robotics Arm Design - Coming Soon!</h3>
+                                    <!-- <p>Replace this with your real CAD project summary.</p> -->
+                                </div>
+                            </header>
+  <!-- 
+                            <div class="project-panel__body" tabindex="0" aria-label="Scrollable details for CAD Project 2">
+                                <div class="project-hero-media">
+                                    <img src="assets/cad-project-2-cover.jpg" alt="CAD Project 2 cover image">
+                                </div>
+
+                                <div class="project-content-grid">
+                                    <section>
+                                        <h4>Overview</h4>
+                                        <p>Replace this with the project goal, model type, and design context.</p>
+                                    </section>
+
+                                    <section>
+                                        <h4>Tools</h4>
+                                        <p>Fusion 360, sketches, constraints, assemblies, rendering, or any tools you used.</p>
+                                    </section>
+
+                                    <section>
+                                        <h4>Design Decisions</h4>
+                                        <p>Explain what you changed from references and why you made those decisions.</p>
+                                    </section>
+
+                                    <section>
+                                        <h4>What I Learned</h4>
+                                        <p>Explain the technical or design skill you improved through this project.</p>
+                                    </section>
+                                </div>
+
+                                <div class="media-grid">
+                                    <figure>
+                                        <img src="assets/cad-project-2-detail-1.jpg" alt="CAD Project 2 detail image one">
+                                        <figcaption>Detail view</figcaption>
+                                    </figure>
+
+                                    <figure>
+                                        <img src="assets/cad-project-2-detail-2.jpg" alt="CAD Project 2 detail image two">
+                                        <figcaption>Rendered view</figcaption>
+                                    </figure>
+                                </div>
+
+                                <div class="video-block">
+                                    <video controls preload="metadata" poster="assets/cad-project-2-poster.jpg">
+                                        <source src="assets/cad-project-2-demo.mp4" type="video/mp4">
+                                        Your browser does not support the video element.
+                                    </video>
+                                    <p>Replace this with a short model rotation, process clip, or walkthrough.</p>
+                                </div>
+
+                                <section class="project-outcome">
+                                    <h4>Outcome</h4>
+                                    <p>Replace this with final results, improvements, or notes about the finished model.</p>
+                                </section> 
+                            </div>-->
+                        </div>
+                    </article>
+
+                    <!-- Project 3 -->
+                    <article
+                        class="project-panel"
+                        data-project-panel
+                        data-project-title="CAD Project 3"
+                        aria-labelledby="cad-project-3-title"
+                    >
+                        <div class="project-panel__shell">
+                            <header class="project-panel__top">
+                                <p class="project-number">03</p>
+                                <div>
+                                    <h3 id="cad-project-3-title">CAD Project 3 - Coming Soon!</h3>
+                                    <!-- <p>Replace this with your real CAD project summary.</p> -->
+                                </div>
+                            </header>
+  <!-- 
+                            <div class="project-panel__body" tabindex="0" aria-label="Scrollable details for CAD Project 3">
+                                <div class="project-hero-media">
+                                    <img src="assets/cad-project-3-cover.jpg" alt="CAD Project 3 cover image">
+                                </div>
+
+                                <div class="project-content-grid">
+                                    <section>
+                                        <h4>Overview</h4>
+                                        <p>Replace this with the project goal, model type, and design context.</p>
+                                    </section>
+
+                                    <section>
+                                        <h4>Tools</h4>
+                                        <p>Fusion 360, sketches, constraints, assemblies, rendering, or any tools you used.</p>
+                                    </section>
+
+                                    <section>
+                                        <h4>Design Decisions</h4>
+                                        <p>Explain what you changed from references and why you made those decisions.</p>
+                                    </section>
+
+                                    <section>
+                                        <h4>What I Learned</h4>
+                                        <p>Explain the technical or design skill you improved through this project.</p>
+                                    </section>
+                                </div>
+
+                                <div class="media-grid">
+                                    <figure>
+                                        <img src="assets/cad-project-3-detail-1.jpg" alt="CAD Project 3 detail image one">
+                                        <figcaption>Detail view</figcaption>
+                                    </figure>
+
+                                    <figure>
+                                        <img src="assets/cad-project-3-detail-2.jpg" alt="CAD Project 3 detail image two">
+                                        <figcaption>Rendered view</figcaption>
+                                    </figure>
+                                </div>
+
+                                <div class="video-block">
+                                    <video controls preload="metadata" poster="assets/cad-project-3-poster.jpg">
+                                        <source src="assets/cad-project-3-demo.mp4" type="video/mp4">
+                                        Your browser does not support the video element.
+                                    </video>
+                                    <p>Replace this with a short model rotation, process clip, or walkthrough.</p>
+                                </div>
+
+                                <section class="project-outcome">
+                                    <h4>Outcome</h4>
+                                    <p>Replace this with final results, improvements, or notes about the finished model.</p>
+                                </section>
+                            </div> -->
+                        </div>
+                    </article>
+
+                    <!-- Add more projects by duplicating one article block above -->
+                </div>
+
+                <button
+                    class="project-nav-button project-nav-button--next"
+                    type="button"
+                    data-project-next
+                    aria-label="Next project"
+                    aria-controls="project-track"
+                >
+                    <span aria-hidden="true">›</span>
+                </button>
+            </div>
+
+            <div class="project-strip-footer">
+                <div class="project-dots" data-project-dots aria-label="Choose project"></div>
+                <p class="scroll-hint" aria-hidden="true">
+                    Use the side arrows, dots, trackpad horizontal scroll, or swipe inside the project strip.
+                </p>
+            </div>
+
+            <p class="sr-only" aria-live="polite" data-project-status>
+                Showing project 1 of 3
+            </p>
+        </section>
     </section>
+
     <section class="projects" data-aos="fade-up">
         <div class="project-card" onclick="location.href='ros.html'">ROS</div>
         <!-- <div class="project-card" onclick="location.href='pcb.html'">PCB</div> -->
         <div class="project-card" onclick="location.href='python.html'">Python</div>
         <!-- <div class="project-card" onclick="location.href='fullp.html'">Full Projects</div> -->
     </section>
+
+    <footer>
+        <p>© 2025 Nancy Bakhaty</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <script>
+        AOS.init({ duration: 1200 });
+    </script>
+
+    <script>
+        function DM() {
+            var element = document.body;
+            element.classList.toggle("dark-mode");
+        }
+    </script>
+
+    <script>
+        let mybutton1 = document.getElementById("topB");
+        const themeSwitch = document.getElementById("themeSwitch");
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction();
+        };
+        function scrollFunction() {
+            if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 350) {
+                mybutton1.style.display = "block";
+                themeSwitch.style.display = "block";
+            } else {
+                mybutton1.style.display = "none";
+                themeSwitch.style.display = "none";
+            }
+        }
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
     <script>
         var coll = document.getElementsByClassName("collapsible");
         var i;
+
         for (i = 0; i < coll.length; i++) {
-            coll[i].addEventListener("click", function() {
+            coll[i].addEventListener("click", function () {
                 this.classList.toggle("active");
+
                 var content = this.nextElementSibling;
+
                 if (content.style.maxHeight) {
-                content.style.maxHeight = null;
+                    content.style.maxHeight = null;
                 } else {
                     content.style.maxHeight = content.scrollHeight + "px";
                 }
             });
         }
     </script>
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 1200 });
-    </script>
-    <script>
-        function DM(){
-            var element = document.body;
-            element.classList.toggle("dark-mode");
-        }
-    </script>
+
     <script src="cad.js"></script>
-    <footer>
-        <p>© 2025 Nancy Bakhaty</p>
-    </footer>
-</body>
+  </body>
 </html>
-<!-- -------------------------------AI Code ------------------------------------->
-
-<section class="project-showcase" data-project-showcase aria-labelledby="project-showcase-title">
-  <div class="project-showcase__header">
-    <div class="project-showcase__copy">
-      <p class="eyebrow">Selected Work</p>
-      <h2 class="project-showcase__title" id="project-showcase-title">Project Showcase</h2>
-      <p class="project-showcase__intro">
-        Move horizontally inside this section to choose a project. Once inside a project,
-        scroll vertically through its details, images, and videos.
-      </p>
-    </div>
-  </div>
-
-  <div class="project-showcase__stage" aria-label="Project carousel controls and scroll area">
-    <button
-      class="nav-button project-nav-button project-nav-button--prev"
-      type="button"
-      data-project-prev
-      aria-label="Previous project"
-      aria-controls="project-track"
-    >
-      <span aria-hidden="true">‹</span>
-    </button>
-
-    <div
-      class="project-track"
-      id="project-track"
-      data-project-track
-      tabindex="0"
-      aria-label="Horizontally scrollable list of projects"
-    >
-      <!-- Project 1 -->
-      <article
-        class="project-panel"
-        data-project-panel
-        data-project-title="Project Atlas"
-        aria-labelledby="project-atlas-title"
-      >
-        <div class="project-panel__shell">
-          <header class="project-panel__top">
-            <p class="project-number">01</p>
-            <div>
-              <h3 id="project-atlas-title">Project Atlas</h3>
-              <p>Brand system, launch page, and visual direction for a digital product.</p>
-            </div>
-          </header>
-
-          <div class="project-panel__body" tabindex="0" aria-label="Scrollable details for Project Atlas">
-            <div class="project-hero-media">
-              <img src="assets/atlas-cover.jpg" alt="Cover visual for Project Atlas" />
-            </div>
-
-            <div class="project-content-grid">
-              <section>
-                <h4>Overview</h4>
-                <p>
-                  Use this area for the project summary, objective, audience, and the reason the project exists.
-                </p>
-              </section>
-
-              <section>
-                <h4>Role</h4>
-                <p>
-                  Describe your responsibilities: strategy, UX, UI, development, content, research, or production.
-                </p>
-              </section>
-
-              <section>
-                <h4>Challenge</h4>
-                <p>
-                  Explain the main user or business problem. Keep it direct and measurable when possible.
-                </p>
-              </section>
-
-              <section>
-                <h4>Solution</h4>
-                <p>
-                  Describe the design and development choices that solved the problem.
-                </p>
-              </section>
-            </div>
-
-            <div class="media-grid">
-              <figure>
-                <img src="assets/atlas-detail-1.jpg" alt="Project Atlas process visual" />
-                <figcaption>Process visual</figcaption>
-              </figure>
-
-              <figure>
-                <img src="assets/atlas-detail-2.jpg" alt="Project Atlas responsive layout visual" />
-                <figcaption>Responsive layout</figcaption>
-              </figure>
-            </div>
-
-            <div class="video-block">
-              <video controls preload="metadata" poster="assets/atlas-poster.jpg">
-                <source src="assets/atlas-demo.mp4" type="video/mp4" />
-                Your browser does not support the video element.
-              </video>
-              <p>Video only plays when the user clicks play.</p>
-            </div>
-
-            <section class="project-outcome">
-              <h4>Outcome</h4>
-              <p>
-                Add results, launch notes, conversion changes, usability improvements, or client feedback here.
-              </p>
-            </section>
-          </div>
-        </div>
-      </article>
-
-      <!-- Project 2 -->
-      <article
-        class="project-panel"
-        data-project-panel
-        data-project-title="Project Nova"
-        aria-labelledby="project-nova-title"
-      >
-        <div class="project-panel__shell">
-          <header class="project-panel__top">
-            <p class="project-number">02</p>
-            <div>
-              <h3 id="project-nova-title">Project Nova</h3>
-              <p>Interactive product page for feature education, comparison, and demo content.</p>
-            </div>
-          </header>
-
-          <div class="project-panel__body" tabindex="0" aria-label="Scrollable details for Project Nova">
-            <div class="project-hero-media">
-              <img src="assets/nova-cover.jpg" alt="Cover visual for Project Nova" />
-            </div>
-
-            <div class="project-content-grid">
-              <section>
-                <h4>Overview</h4>
-                <p>
-                  Introduce what the product is and what users need to understand first.
-                </p>
-              </section>
-
-              <section>
-                <h4>Role</h4>
-                <p>
-                  Describe your front-end, design, UX, copy, or production responsibilities.
-                </p>
-              </section>
-
-              <section>
-                <h4>Challenge</h4>
-                <p>
-                  Explain what was unclear, slow, inaccessible, or hard to convert.
-                </p>
-              </section>
-
-              <section>
-                <h4>Solution</h4>
-                <p>
-                  Show how the layout, media, and copy make the product easier to evaluate.
-                </p>
-              </section>
-            </div>
-
-            <div class="media-grid">
-              <figure>
-                <img src="assets/nova-detail-1.jpg" alt="Project Nova feature comparison visual" />
-                <figcaption>Feature comparison</figcaption>
-              </figure>
-
-              <figure>
-                <img src="assets/nova-detail-2.jpg" alt="Project Nova interface detail visual" />
-                <figcaption>Interface detail</figcaption>
-              </figure>
-            </div>
-
-            <div class="video-block">
-              <video controls preload="metadata" poster="assets/nova-poster.jpg">
-                <source src="assets/nova-demo.mp4" type="video/mp4" />
-                Your browser does not support the video element.
-              </video>
-              <p>Use this for demos, walkthroughs, launch videos, or screen recordings.</p>
-            </div>
-
-            <section class="project-outcome">
-              <h4>Outcome</h4>
-              <p>Add impact metrics and what changed after launch.</p>
-            </section>
-          </div>
-        </div>
-      </article>
-
-      <!-- Project 3 -->
-      <article
-        class="project-panel"
-        data-project-panel
-        data-project-title="Project Echo"
-        aria-labelledby="project-echo-title"
-      >
-        <div class="project-panel__shell">
-          <header class="project-panel__top">
-            <p class="project-number">03</p>
-            <div>
-              <h3 id="project-echo-title">Project Echo</h3>
-              <p>Case-study style project with process, visuals, decisions, and final results.</p>
-            </div>
-          </header>
-
-          <div class="project-panel__body" tabindex="0" aria-label="Scrollable details for Project Echo">
-            <div class="project-hero-media">
-              <img src="assets/echo-cover.jpg" alt="Cover visual for Project Echo" />
-            </div>
-
-            <div class="project-content-grid">
-              <section>
-                <h4>Overview</h4>
-                <p>Use this section for a compact story of the project.</p>
-              </section>
-
-              <section>
-                <h4>Role</h4>
-                <p>List your specific responsibilities and tools.</p>
-              </section>
-
-              <section>
-                <h4>Challenge</h4>
-                <p>Describe what made the project difficult or important.</p>
-              </section>
-
-              <section>
-                <h4>Solution</h4>
-                <p>Explain the major decisions and how they improved the experience.</p>
-              </section>
-            </div>
-
-            <div class="media-grid">
-              <figure>
-                <img src="assets/echo-detail-1.jpg" alt="Project Echo wireframe visual" />
-                <figcaption>Wireframes</figcaption>
-              </figure>
-
-              <figure>
-                <img src="assets/echo-detail-2.jpg" alt="Project Echo final design visual" />
-                <figcaption>Final design</figcaption>
-              </figure>
-            </div>
-
-            <div class="video-block">
-              <video controls preload="metadata" poster="assets/echo-poster.jpg">
-                <source src="assets/echo-demo.mp4" type="video/mp4" />
-                Your browser does not support the video element.
-              </video>
-              <p>Native controls are kept for accessibility and browser consistency.</p>
-            </div>
-
-            <section class="project-outcome">
-              <h4>Outcome</h4>
-              <p>Add results, feedback, or next steps.</p>
-            </section>
-          </div>
-        </div>
-      </article>
-
-      <!-- Project 4 -->
-      <article
-        class="project-panel"
-        data-project-panel
-        data-project-title="Project Orbit"
-        aria-labelledby="project-orbit-title"
-      >
-        <div class="project-panel__shell">
-          <header class="project-panel__top">
-            <p class="project-number">04</p>
-            <div>
-              <h3 id="project-orbit-title">Project Orbit</h3>
-              <p>Content platform refresh with a cleaner structure and smoother browsing pattern.</p>
-            </div>
-          </header>
-
-          <div class="project-panel__body" tabindex="0" aria-label="Scrollable details for Project Orbit">
-            <div class="project-hero-media">
-              <img src="assets/orbit-cover.jpg" alt="Cover visual for Project Orbit" />
-            </div>
-
-            <div class="project-content-grid">
-              <section>
-                <h4>Overview</h4>
-                <p>Summarize the platform, target user, and main project goal.</p>
-              </section>
-
-              <section>
-                <h4>Role</h4>
-                <p>Explain your contribution to structure, layout, interaction, or implementation.</p>
-              </section>
-
-              <section>
-                <h4>Challenge</h4>
-                <p>Call out content density, navigation issues, or conversion problems.</p>
-              </section>
-
-              <section>
-                <h4>Solution</h4>
-                <p>Explain how the updated system improves browsing and comprehension.</p>
-              </section>
-            </div>
-
-            <div class="media-grid">
-              <figure>
-                <img src="assets/orbit-detail-1.jpg" alt="Project Orbit content structure visual" />
-                <figcaption>Content structure</figcaption>
-              </figure>
-
-              <figure>
-                <img src="assets/orbit-detail-2.jpg" alt="Project Orbit page layout visual" />
-                <figcaption>Page layout</figcaption>
-              </figure>
-            </div>
-
-            <div class="video-block">
-              <video controls preload="metadata" poster="assets/orbit-poster.jpg">
-                <source src="assets/orbit-demo.mp4" type="video/mp4" />
-                Your browser does not support the video element.
-              </video>
-              <p>Replace the source with a real project demo video.</p>
-            </div>
-
-            <section class="project-outcome">
-              <h4>Outcome</h4>
-              <p>Document the project’s final impact.</p>
-            </section>
-          </div>
-        </div>
-      </article>
-
-      <!-- Project 5 -->
-      <article
-        class="project-panel"
-        data-project-panel
-        data-project-title="Project Lumen"
-        aria-labelledby="project-lumen-title"
-      >
-        <div class="project-panel__shell">
-          <header class="project-panel__top">
-            <p class="project-number">05</p>
-            <div>
-              <h3 id="project-lumen-title">Project Lumen</h3>
-              <p>Video-first project page for campaigns, launches, and visual storytelling.</p>
-            </div>
-          </header>
-
-          <div class="project-panel__body" tabindex="0" aria-label="Scrollable details for Project Lumen">
-            <div class="project-hero-media">
-              <img src="assets/lumen-cover.jpg" alt="Cover visual for Project Lumen" />
-            </div>
-
-            <div class="project-content-grid">
-              <section>
-                <h4>Overview</h4>
-                <p>Use this for campaign context and audience expectations.</p>
-              </section>
-
-              <section>
-                <h4>Role</h4>
-                <p>Describe your design, media, development, or strategy contribution.</p>
-              </section>
-
-              <section>
-                <h4>Challenge</h4>
-                <p>Explain the issue the project needed to solve.</p>
-              </section>
-
-              <section>
-                <h4>Solution</h4>
-                <p>Show how video, visuals, and copy work together without overwhelming the page.</p>
-              </section>
-            </div>
-
-            <div class="media-grid">
-              <figure>
-                <img src="assets/lumen-detail-1.jpg" alt="Project Lumen campaign asset visual" />
-                <figcaption>Campaign asset</figcaption>
-              </figure>
-
-              <figure>
-                <img src="assets/lumen-detail-2.jpg" alt="Project Lumen final layout visual" />
-                <figcaption>Final layout</figcaption>
-              </figure>
-            </div>
-
-            <div class="video-block">
-              <video controls preload="metadata" poster="assets/lumen-poster.jpg">
-                <source src="assets/lumen-demo.mp4" type="video/mp4" />
-                Your browser does not support the video element.
-              </video>
-              <p>Videos do not autoplay. Users choose when to play them.</p>
-            </div>
-
-            <section class="project-outcome">
-              <h4>Outcome</h4>
-              <p>Add performance, campaign, or engagement results here.</p>
-            </section>
-          </div>
-        </div>
-      </article>
-    </div>
-
-    <button
-      class="nav-button project-nav-button project-nav-button--next"
-      type="button"
-      data-project-next
-      aria-label="Next project"
-      aria-controls="project-track"
-    >
-      <span aria-hidden="true">›</span>
-    </button>
-  </div>
-
-  <div class="project-strip-footer">
-    <div class="project-dots" data-project-dots aria-label="Choose project"></div>
-    <p class="scroll-hint" aria-hidden="true">
-      Use the side arrows, dots, trackpad horizontal scroll, or swipe inside the project strip.
-    </p>
-  </div>
-
-  <p class="sr-only" aria-live="polite" data-project-status>
-    Showing project 1 of 5
-  </p>
-</section>

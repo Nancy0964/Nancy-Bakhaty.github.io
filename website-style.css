@@ -1,12 +1,24 @@
 html body {
-    width: auto;
-    height: auto;
+    width: 100%;
+    min-height: 100vh;
     background-color:#F3F3F3;
     color: #1E1E1E;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow-x: hidden;
     scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+img,
+video {
+    max-width: 100%;
 }
 
 .dark-mode {
